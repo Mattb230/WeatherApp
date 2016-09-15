@@ -1,4 +1,4 @@
-package com.bootsysoftware.weatherapp;
+package com.bootsysoftware.weatherapp.controller;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
@@ -7,6 +7,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
+
+import com.bootsysoftware.weatherapp.R;
+import com.bootsysoftware.weatherapp.model.CurrentWeather;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 
@@ -19,6 +25,8 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
+    
+    private CurrentWeather mCurrentWeather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         double lon =-122.423;
         String forecastURL = "https://api.forecast.io/forecast/" + apiKey + "/" + lat + "," + lon;
 
+        //Srart stuff for network call here
         if(isNetworkAvailable()) {
-
             //Create the okHttpClient and build the request
             OkHttpClient client = new OkHttpClient();
             Request request = new Request.Builder().url(forecastURL).build();
@@ -46,13 +54,19 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onResponse(Call call, Response response) throws IOException {
                     try {
-                        Log.v(TAG, response.body().string());
+                        //store the response raw text in the jsonData string
+                        String jsonData = response.body().string();
                         if (response.isSuccessful()) {
+                            //pass the json raw string to method, which will return a Current Weather
+                            //object populated with the selected data
+                            mCurrentWeather = getCurrentDetails(jsonData);
 
                         } else {
                             alertUserAboutError();
                         }
                     } catch (IOException e) {
+                        Log.e(TAG, "Exception caught: ", e);
+                    } catch (JSONException e) {
                         Log.e(TAG, "Exception caught: ", e);
                     }
                 }
@@ -62,10 +76,30 @@ public class MainActivity extends AppCompatActivity {
         }
     }//end onCreate
 
+    private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
+        JSONObject forecast = new JSONObject(jsonData);
+        String timeZone = forecast.getString("timezone");
+        Log.i(TAG, "From JSON: " + timeZone);
+
+        JSONObject currently = forecast.getJSONObject("currently");
+
+        CurrentWeather currentWeather = new CurrentWeather(
+                currently.getString("icon"),
+                currently.getLong("time"),
+                currently.getDouble("temperature"),
+                currently.getDouble("humidity"),
+                currently.getDouble("precipProbability"),
+                currently.getString("summary")
+                );
+
+        return currentWeather;
+    }
+
     private boolean isNetworkAvailable() {
         ConnectivityManager manager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = manager.getActiveNetworkInfo();
         boolean isAvailable = false;
+        //check if network exists and check if it is connected
         if(networkInfo != null && networkInfo.isConnected()){
             isAvailable = true;
         }
