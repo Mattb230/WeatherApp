@@ -38,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         double lat =37.8267;
         double lon =-122.423;
         String forecastURL = "https://api.forecast.io/forecast/" + apiKey + "/" + lat + "," + lon;
+        Toast.makeText(MainActivity.this, "Hello", Toast.LENGTH_SHORT).show();
 
         //Srart stuff for network call here
         if(isNetworkAvailable()) {
