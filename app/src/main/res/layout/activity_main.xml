@@ -124,7 +124,7 @@
         android:layout_height="wrap_content"
         android:text="@string/getting_current_weather"
         android:id="@+id/summaryTextView"
-        android:layout_below="@+id/horizontalLinearLayout"
+        android:layout_below="@+id/myLinearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:textColor="#ffffff"

@@ -144,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
         mTimeTextView.setText("At " + mCurrentForecast.getFormattedTime() + " it will be");
         mHumidityValueTextView.setText(mCurrentForecast.getHumidity() + "" );
         mPrecipValueTextView.setText(mCurrentForecast.getPrecipChance() + "%");
-        mPrecipValueTextView.setText(mCurrentForecast.getSummary());
+        mSummaryTextView.setText(mCurrentForecast.getSummary() + "");
         //get the drawable object and set it as the icon
         Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), mCurrentForecast.getIconId());
         mIconImageView.setImageDrawable(drawable);
