@@ -9,4 +9,5 @@
     <string name="getting_current_weather">Getting Current Weather...</string>
     <string name="weather_image">Weather Image</string>
     <string name="humidity">HUMIDITY</string>
+    <string name="noDailyForecastString">There is no data to display.</string>
 </resources>
