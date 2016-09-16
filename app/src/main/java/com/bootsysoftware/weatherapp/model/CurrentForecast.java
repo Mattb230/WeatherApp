@@ -9,7 +9,7 @@ import java.util.TimeZone;
 /**
  * Created by Matthew Boydston on 9/15/2016.
  */
-public class CurrentWeather {
+public class CurrentForecast {
     private String mIcon;
     private long mTime;
     private double mTemp;
@@ -20,7 +20,7 @@ public class CurrentWeather {
 
     private String mTimeZone;
 
-    public CurrentWeather(String icon, long time, double temp, double humidity, double precipChance, String summary, String timeZone) {
+    public CurrentForecast(String icon, long time, double temp, double humidity, double precipChance, String summary, String timeZone) {
         mIcon = icon;
         mTime = time;
         mTemp = temp;

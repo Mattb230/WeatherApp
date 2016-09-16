@@ -15,11 +15,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bootsysoftware.weatherapp.R;
-import com.bootsysoftware.weatherapp.model.CurrentWeather;
+import com.bootsysoftware.weatherapp.model.CurrentForecast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.io.IOException;
 
@@ -35,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String TAG = MainActivity.class.getSimpleName();
     
-    private CurrentWeather mCurrentWeather;
+    private CurrentForecast mCurrentForecast;
 
     @BindView(R.id.timeTextView) TextView mTimeTextView;
     @BindView(R.id.tempTextView) TextView mTempTextView;
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         mProgressBar.setVisibility(View.INVISIBLE);
 
-        final double lat =9999999;
+        final double lat =37.8267;
         final double lon =-122.423;
 
         mRefreshImageView.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                         if (response.isSuccessful()) {
                             //pass the json raw string to method, which will return a Current Weather
                             //object populated with the selected data
-                            mCurrentWeather = getCurrentDetails(jsonData);
+                            mCurrentForecast = getCurrentDetails(jsonData);
                             runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -141,24 +140,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateDisplay() {
-        mTempTextView.setText(mCurrentWeather.getTemp() + "");
-        mTimeTextView.setText("At " + mCurrentWeather.getFormattedTime() + " it will be");
-        mHumidityValueTextView.setText(mCurrentWeather.getHumidity() + "" );
-        mPrecipValueTextView.setText(mCurrentWeather.getPrecipChance() + "%");
-        mPrecipValueTextView.setText(mCurrentWeather.getSummary());
+        mTempTextView.setText(mCurrentForecast.getTemp() + "");
+        mTimeTextView.setText("At " + mCurrentForecast.getFormattedTime() + " it will be");
+        mHumidityValueTextView.setText(mCurrentForecast.getHumidity() + "" );
+        mPrecipValueTextView.setText(mCurrentForecast.getPrecipChance() + "%");
+        mPrecipValueTextView.setText(mCurrentForecast.getSummary());
         //get the drawable object and set it as the icon
-        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), mCurrentWeather.getIconId());
+        Drawable drawable = ContextCompat.getDrawable(getApplicationContext(), mCurrentForecast.getIconId());
         mIconImageView.setImageDrawable(drawable);
     }
 
-    private CurrentWeather getCurrentDetails(String jsonData) throws JSONException {
+    private CurrentForecast getCurrentDetails(String jsonData) throws JSONException {
         JSONObject forecast = new JSONObject(jsonData);
         //String timeZone =
         //Log.i(TAG, "From JSON: " + timeZone);
 
         JSONObject currently = forecast.getJSONObject("currently");
 
-        CurrentWeather currentWeather = new CurrentWeather(
+        CurrentForecast currentForecast = new CurrentForecast(
                 currently.getString("icon"),
                 currently.getLong("time"),
                 currently.getDouble("temperature"),
@@ -168,9 +167,9 @@ public class MainActivity extends AppCompatActivity {
                 forecast.getString("timezone")
         );
 
-        Log.d(TAG, currentWeather.getFormattedTime());
+        Log.d(TAG, currentForecast.getFormattedTime());
 
-        return currentWeather;
+        return currentForecast;
     }
 
     private boolean isNetworkAvailable() {
