@@ -1,5 +1,9 @@
 package com.bootsysoftware.weatherapp.model;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.TimeZone;
+
 /**
  * Created by Matthew Boydston on 9/16/2016.
  */
@@ -34,8 +38,8 @@ public class Day {
         mSummary = summary;
     }
 
-    public double getTemperatureMax() {
-        return mTemperatureMax;
+    public int getTemperatureMax() {
+        return (int) Math.round(mTemperatureMax);
     }
 
     public void setTemperatureMax(double temperatureMax) {
@@ -56,5 +60,15 @@ public class Day {
 
     public void setTimezome(String timezome) {
         mTimezome = timezome;
+    }
+
+    public int getIconId(){
+        return Forecast.getIconId(mIcon);
+    }
+    public String getDayOfTheWeek(){
+        SimpleDateFormat formatter = new SimpleDateFormat("EEEE");
+        formatter.setTimeZone(TimeZone.getTimeZone(mTimezome));
+        Date dateTime = new Date(mTime * 1000);
+        return formatter.format(dateTime);
     }
 }

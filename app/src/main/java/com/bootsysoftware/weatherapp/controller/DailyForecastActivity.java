@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.widget.ArrayAdapter;
 
 import com.bootsysoftware.weatherapp.R;
+import com.bootsysoftware.weatherapp.adapters.DayAdapter;
+import com.bootsysoftware.weatherapp.model.Day;
 
 public class DailyForecastActivity extends ListActivity {
+    private Day[] mDays;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,8 +20,6 @@ public class DailyForecastActivity extends ListActivity {
         String[] daysOfTheWeek =
                 { "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday" };
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_expandable_list_item_1, daysOfTheWeek);
-        setListAdapter(adapter);
+        DayAdapter adapter = new DayAdapter(this, mDays);
     }
 }
