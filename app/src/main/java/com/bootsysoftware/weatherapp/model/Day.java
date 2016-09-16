@@ -10,6 +10,14 @@ public class Day {
     private String mIcon;
     private String mTimezome;
 
+    public Day(long time, String summary, double temperatureMax, String icon, String timezome) {
+        mTime = time;
+        mSummary = summary;
+        mTemperatureMax = temperatureMax;
+        mIcon = icon;
+        mTimezome = timezome;
+    }
+
     public long getTime() {
         return mTime;
     }

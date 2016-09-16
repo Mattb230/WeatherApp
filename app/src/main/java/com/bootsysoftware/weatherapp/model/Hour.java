@@ -10,6 +10,14 @@ public class Hour {
     private String mIcon;
     private String mTimezome;
 
+    public Hour(long time, String summary, double temperature, String icon, String timezome) {
+        mTime = time;
+        mSummary = summary;
+        mTemperature = temperature;
+        mIcon = icon;
+        mTimezome = timezome;
+    }
+
     public long getTime() {
         return mTime;
     }

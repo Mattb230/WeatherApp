@@ -5,7 +5,30 @@ package com.bootsysoftware.weatherapp.model;
  */
 public class Forecast {
     private CurrentForecast mCurrentForecast;
-    private Hour[] mDHourlyForecast;
+    private Hour[] mHourlyForecast;
     private Day[] mDailyForecast;
 
+    public CurrentForecast getCurrentForecast() {
+        return mCurrentForecast;
+    }
+
+    public void setCurrentForecast(CurrentForecast currentForecast) {
+        mCurrentForecast = currentForecast;
+    }
+
+    public Hour[] getHourlyForecast() {
+        return mHourlyForecast;
+    }
+
+    public void setHourlyForecast(Hour[] hourlyForecast) {
+        mHourlyForecast = hourlyForecast;
+    }
+
+    public Day[] getDailyForecast() {
+        return mDailyForecast;
+    }
+
+    public void setDailyForecast(Day[] dailyForecast) {
+        mDailyForecast = dailyForecast;
+    }
 }
