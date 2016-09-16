@@ -4,4 +4,9 @@
     <string name="error_messageString">There was an error. Please try again.</string>
     <string name="okString">OK</string>
     <string name="network_unavaileString">Network is unavailable!</string>
+    <string name="rain_snowString">Rain/Snow</string>
+    <string name="default_tempString">--</string>
+    <string name="getting_current_weather">Getting Current Weather...</string>
+    <string name="weather_image">Weather Image</string>
+    <string name="humidity">HUMIDITY</string>
 </resources>

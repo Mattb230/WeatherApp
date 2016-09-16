@@ -14,7 +14,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="100"
+        android:text="--"
         android:id="@+id/tempTextView"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
@@ -34,7 +34,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="At 5&apos;oclock PM it will be"
+        android:text="..."
         android:id="@+id/timeTextView"
         android:layout_above="@+id/degreeImageView"
         android:layout_centerHorizontal="true"
@@ -68,7 +68,7 @@
         android:layout_below="@+id/tempTextView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
-        android:id="@+id/horizontalLinearLayout">
+        android:id="@+id/myLinearLayout">
 
         <LinearLayout
             android:orientation="vertical"
@@ -79,7 +79,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="HUMIDITY"
+                android:text="@string/humidity"
                 android:id="@+id/humidityTextView"
                 android:textColor="#80ffffff"
                 android:gravity="center_horizontal"/>
@@ -87,7 +87,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0.88"
+                android:text="--"
                 android:id="@+id/humidityValueTextView"
                 android:textColor="#ffffff"
                 android:textSize="24sp"
@@ -103,7 +103,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Rain/Snow"
+                android:text="@string/rain_snowString"
                 android:id="@+id/precipTextView"
                 android:textColor="#80ffffff"
                 android:gravity="center_horizontal"/>
@@ -111,7 +111,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="100"
+                android:text="@string/default_tempString"
                 android:id="@+id/precipValueTextView"
                 android:textColor="#ffffff"
                 android:textSize="24sp"
@@ -122,12 +122,29 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Cloudy with a chance of meatballs"
+        android:text="@string/getting_current_weather"
         android:id="@+id/summaryTextView"
         android:layout_below="@+id/horizontalLinearLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
         android:textColor="#ffffff"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:gravity="center_horizontal"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/refreshImageView"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/refresh"
+        android:contentDescription="@string/weather_image"/>
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/refreshImageView"/>
 </RelativeLayout>
