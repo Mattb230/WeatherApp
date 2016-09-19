@@ -90,12 +90,12 @@ public class Day implements Parcelable {
         dest.writeString(mTimezome);
     }
 
-    private Day(Parcel n){
-        mTime = n.readLong();
-        mSummary = n.readString();
-        mTemperatureMax = n.readDouble();
-        mIcon = n.readString();
-        mTimezome = n.readString();
+    private Day(Parcel in){
+        mTime = in.readLong();
+        mSummary = in.readString();
+        mTemperatureMax = in.readDouble();
+        mIcon = in.readString();
+        mTimezome = in.readString();
     }
 
     public static final Creator<Day> CREATOR = new Creator<Day>() {
