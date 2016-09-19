@@ -3,6 +3,9 @@ package com.bootsysoftware.weatherapp.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 /**
  * Created by Matthew Boydston on 9/16/2016.
  */
@@ -39,8 +42,8 @@ public class Hour implements Parcelable {
         mSummary = summary;
     }
 
-    public double getTemperature() {
-        return mTemperature;
+    public int getTemperature() {
+        return (int) Math.round(mTemperature);
     }
 
     public void setTemperature(double temperature) {
@@ -55,12 +58,22 @@ public class Hour implements Parcelable {
         mIcon = icon;
     }
 
+    public int getIconId(){
+        return Forecast.getIconId(mIcon);
+    }
+
     public String getTimezome() {
         return mTimezome;
     }
 
     public void setTimezome(String timezome) {
         mTimezome = timezome;
+    }
+
+    public String getHour(){
+        SimpleDateFormat formatter = new SimpleDateFormat("h a");
+        Date date = new Date(mTime * 1000);
+        return formatter.format(date);
     }
 
     //to implement parcelable. not using this method
